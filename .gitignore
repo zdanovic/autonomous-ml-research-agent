@@ -1,0 +1,11 @@
+experiments.csv
+data/
+catboost_info/
+.venv/
+wandb/
+*.pyc
+__pycache__/
+.DS_Store
+submissions/
+.env
+.env.example

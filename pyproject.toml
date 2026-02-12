@@ -1,0 +1,6 @@
+[project]
+name = "amra"
+version = "0.1.0"
+description = "WIP"
+readme = "README.md"
+requires-python = ">=3.10"
