@@ -1,6 +1,88 @@
 [project]
 name = "amra"
-version = "0.1.0"
-description = "WIP"
+version = "2.0.0"
+description = "Autonomous ML Research Agent"
 readme = "README.md"
 requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Comet-Swarm Team" }]
+keywords = ["ml", "kaggle", "agents", "langgraph", "comet"]
+
+dependencies = [
+    # Core ML
+    "polars>=1.20.0",
+    "numpy>=2.0.0",
+    "scikit-learn>=1.6.0",
+    # Gradient Boosting
+    "lightgbm>=4.5.0",
+    "xgboost>=2.1.0",
+    "catboost>=1.2.0",
+    # Hyperparameter Optimization
+    "optuna>=4.1.0",
+    # LLM & Agents
+    "langgraph>=0.3.0",
+    "langchain>=0.3.0",
+    "langchain-openai>=0.3.0",
+    "langchain-anthropic>=0.3.0",
+    "openai>=1.60.0",
+    # Comet Integrations
+    "comet-ml>=3.50.0",
+    "opik>=1.5.0",
+    "dspy-ai>=2.5.0",
+    # Sandbox Execution
+    "e2b>=1.2.0",
+    "e2b-code-interpreter>=1.0.0",
+    # Async & HTTP
+    "httpx>=0.28.0",
+    "aiofiles>=24.0.0",
+    # Configuration & Validation
+    "pydantic>=2.10.0",
+    "pydantic-settings>=2.7.0",
+    # Data Formats
+    "pyarrow>=18.0.0",
+    # Visualization (optional for EDA)
+    "plotly>=5.24.0",
+    "streamlit>=1.53.1",
+    "watchdog>=6.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.24.0",
+    "pytest-cov>=6.0.0",
+    "ruff>=0.9.0",
+    "mypy>=1.14.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/comet_swarm"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = [
+    "integration: marks tests as integration tests",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.14",
+]
